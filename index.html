@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Dilema do Prisioneiro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <!-- CONTAINER PRINCIPAL -->
+    <div id="game-container">
+        
+        <!-- IMAGEM DE FUNDO DA CENA -->
+        <img id="scene-image" src="img/1.jpg" alt="Cena do jogo" class="scene-background">
+        
+        <!-- CAIXA DE DIÁLOGO (com bordas decorativas) -->
+        <div id="dialog-box" class="dialog-container">
+            <!-- BORDA SUPERIOR ESQUERDA -->
+            <div class="border-corner top-left"></div>
+            <!-- BORDA SUPERIOR DIREITA -->
+            <div class="border-corner top-right"></div>
+            <!-- BORDA INFERIOR ESQUERDA -->
+            <div class="border-corner bottom-left"></div>
+            <!-- BORDA INFERIOR DIREITA -->
+            <div class="border-corner bottom-right"></div>
+            
+            <!-- TEXTO DO DIÁLOGO -->
+            <div class="dialog-content">
+                <p id="dialog-text" class="dialog-text">
+                    Dois prisioneiros aguardam interrogatório...
+                </p>
+                
+                <!-- BOTÃO CONTINUAR -->
+                <button id="continue-btn" class="dialog-button continue-button">
+                    Continuar
+                </button>
+            </div>
+        </div>
+        
+        <!-- CAIXA DE ESCOLHAS (inicialmente escondida) -->
+        <div id="choices-box" class="choices-container hidden">
+            <!-- BORDAS DECORATIVAS -->
+            <div class="border-corner top-left"></div>
+            <div class="border-corner top-right"></div>
+            <div class="border-corner bottom-left"></div>
+            <div class="border-corner bottom-right"></div>
+            
+            <!-- CONTEÚDO DAS ESCOLHAS -->
+            <div class="choices-content">
+                <p class="choices-title">O que você faz?</p>
+                
+                <div class="choices-buttons">
+                    <button id="cooperate-btn" class="choice-button cooperate-button">
+                        Cooperar
+                    </button>
+                    
+                    <button id="betray-btn" class="choice-button betray-button">
+                        Trair
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- INDICADOR DE PROGRESSO (opcional) -->
+        <div id="progress-indicator" class="progress-dots">
+            <span class="progress-dot active" data-scene="1"></span>
+            <span class="progress-dot" data-scene="2"></span>
+            <span class="progress-dot" data-scene="3"></span>
+            <span class="progress-dot" data-scene="4"></span>
+            <span class="progress-dot" data-scene="5"></span>
+        </div>
+        
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

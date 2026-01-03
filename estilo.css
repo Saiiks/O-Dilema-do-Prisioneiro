@@ -1,0 +1,369 @@
+/* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #f0f0f0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== IMAGEM DE CENA ===== */
+.scene-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.8) contrast(1.1);
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ===== CONTÊINER DE DIÁLOGO E ESCOLHAS (MESMA POSIÇÃO FIXA) ===== */
+.dialog-container,
+.choices-container {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 700px;
+    min-height: 200px; /* Altura fixa para ambos */
+    z-index: 10;
+    padding: 25px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out; /* Transição suave mas sem movimento */
+}
+
+/* ===== ESTILOS ESPECÍFICOS DO DIÁLOGO ===== */
+.dialog-container {
+    background: rgba(10, 15, 30, 0.9); /* Levemente mais opaco */
+    border: 3px solid #8b7355;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(139, 115, 85, 0.3);
+}
+
+/* ===== ESTILOS ESPECÍFICOS DAS ESCOLHAS ===== */
+.choices-container {
+    background: rgba(30, 15, 40, 0.9);
+    border: 3px solid #6a5acd;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
+                inset 0 0 20px rgba(106, 90, 205, 0.4);
+}
+
+/* ===== BORDAS DECORATIVAS (APLICADAS A AMBOS) ===== */
+.border-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #d4af37;
+    z-index: 11;
+}
+
+.top-left {
+    top: -15px;
+    left: -15px;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+}
+
+.top-right {
+    top: -15px;
+    right: -15px;
+    border-left: none;
+    border-bottom: none;
+    border-top-right-radius: 5px;
+}
+
+.bottom-left {
+    bottom: -15px;
+    left: -15px;
+    border-right: none;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+}
+
+.bottom-right {
+    bottom: -15px;
+    right: -15px;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 5px;
+}
+
+/* ===== CONTEÚDO DO DIÁLOGO ===== */
+.dialog-content {
+    position: relative;
+    z-index: 12;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dialog-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    padding: 0 10px;
+    color: #f8f8f8;
+    letter-spacing: 0.5px;
+}
+
+/* ===== BOTÃO CONTINUAR ===== */
+.dialog-button {
+    align-self: center;
+    padding: 12px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 13;
+}
+
+.continue-button {
+    background: linear-gradient(to bottom, #4a752c, #3a5e22);
+    color: white;
+    border: 2px solid #6b8e23;
+    box-shadow: 0 4px 0 #2d4a1a,
+                0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.continue-button:hover {
+    background: linear-gradient(to bottom, #5a8c3c, #4a752c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #2d4a1a,
+                0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.continue-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 #2d4a1a,
+                0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.continue-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid white;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    opacity: 0.8;
+}
+
+/* ===== CONTEÚDO DAS ESCOLHAS ===== */
+.choices-content {
+    position: relative;
+    z-index: 12;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.choices-title {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #e6e6fa;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+.choices-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ===== BOTÕES DE ESCOLHA ===== */
+.choice-button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    z-index: 13;
+}
+
+.cooperate-button {
+    background: linear-gradient(to bottom, #2e8b57, #1f6b42);
+    color: white;
+    border: 2px solid #3cb371;
+    box-shadow: 0 5px 0 #1b4f31,
+                0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cooperate-button:hover {
+    background: linear-gradient(to bottom, #3fa56d, #2e8b57);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #1b4f31,
+                0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.betray-button {
+    background: linear-gradient(to bottom, #b22222, #8b0000);
+    color: white;
+    border: 2px solid #dc143c;
+    box-shadow: 0 5px 0 #5a0f0f,
+                0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.betray-button:hover {
+    background: linear-gradient(to bottom, #cc3333, #b22222);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #5a0f0f,
+                0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.choice-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 0 #1b4f31,
+                0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.betray-button:active {
+    box-shadow: 0 3px 0 #5a0f0f,
+                0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== ÍCONES NOS BOTÕES DE ESCOLHA ===== */
+.cooperate-button::before {
+    content: '🤝';
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+.betray-button::before {
+    content: '⚔️';
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+/* ===== INDICADOR DE PROGRESSO ===== */
+.progress-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 15;
+}
+
+.progress-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    background: #d4af37;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    transform: scale(1.2);
+}
+
+.progress-dot:hover {
+    background: rgba(212, 175, 55, 0.7);
+    transform: scale(1.1);
+}
+
+/* ===== UTILITÁRIOS ===== */
+.hidden {
+    display: none !important;
+}
+
+/* ===== ANIMAÇÕES (SEM MOVIMENTO VERTICAL) ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .dialog-container,
+    .choices-container {
+        width: 95%;
+        padding: 20px;
+        min-height: 180px; /* Mantém altura consistente */
+    }
+    
+    .dialog-text {
+        font-size: 1.1rem;
+    }
+    
+    .choices-buttons {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .choice-button {
+        min-width: 90%;
+        padding: 15px 25px;
+    }
+    
+    .dialog-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    
+    .border-corner {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .choices-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+}
